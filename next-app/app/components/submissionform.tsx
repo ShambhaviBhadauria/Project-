@@ -29,9 +29,23 @@ export default function submissionform() {
               onSubmit={handleSubmit}
               className='flex felx-1 flex-col gap-4 sm:w-1/2'
             >
-                <input className='rounded-1g' name='name' placeholder='name' required/>
+                <input className='rounded-1g p-1' name='title' placeholder='Title' required/>
 
+                <input className='rounded-1g p-1' name='authorName' placeholder='Author Name' required/>
+            
+                <input className='rounded-1g p-1' name='yearOfPublication' placeholder='Year of Publication' required/>
+
+                <input className='rounded-1g p-1' name='Volume' placeholder='Volume No.'/>
+
+                <input className='rounded-1g p-1' name='number' placeholder='Book Number'/>
+
+
+                <button className='rounded-1g bg-black py-2 text-white'>Submit</button>
             </form>
+
+            <div className='flex-1 rounded-1g bg-cyan-600 p-8 text-white'>
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+            </div> 
         </section>
     )
 }
