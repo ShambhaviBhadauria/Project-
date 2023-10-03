@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 
-const uri = "mongodb+srv://shambhavibhadauria152:<Shamy152>@shambhavi.8cjauuk.mongodb.net/?retryWrites=true&w=majority";
+const uri =  "mongodb+srv://shambhavibhadauria152:<Shamy152>@shambhavi.8cjauuk.mongodb.net/?retryWrites=true&w=majority";
 
 async function connect() {
     try {
@@ -17,6 +17,6 @@ async function connect() {
 }
 
 connect();
-app.listen(10000, () => {
+app.listen(8000, () => {
     console.log("Server started on Port 8000");
 });
