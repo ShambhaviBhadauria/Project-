@@ -1,23 +1,5 @@
 {
-  "name": "ense701",
-  "version": "1.0.0",
-  "description": "Node Webapp",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ShambhaviBhadauria/Project-.git"
-  },
-  "author": "Shambhavi Bhadauria",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ShambhaviBhadauria/Project-/issues"
-  },
-  "homepage": "https://github.com/ShambhaviBhadauria/Project-#readme",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^7.5.3"
+    "react-hook-form": "^7.47.0"
   }
 }
