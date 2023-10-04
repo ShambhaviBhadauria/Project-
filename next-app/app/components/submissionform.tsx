@@ -2,43 +2,97 @@
 
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
+
+type Inputs = {
+    title: string
+    authorname: string
+    yearOfPublication: string
+    volume: number
+    extraInformation: string,
+    reponseBool: boolean,
+    responseEmail: string
+}
 
 export default function submissionform() {
-    const [data, setData] = useState()
+    const [data, setData] = useState<Inputs>()
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+   const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+   } = useForm<Inputs>({   })
 
-        const form = event.currentTarget
-        const formData = new FormData(form)
-        const formDataObject = Object.fromEntries(formData)
-
-        const data = await fetch('/api/form', {
-            method: 'POST',
-            body: JSON.stringify(formDataObject)
-        }).then(res => res.json())
-
-        setData(data)
-        form.reset()
-    }
+   const processForm: SubmitHandler<Inputs> = data => setData(data)
 
     return (
         <section className='flex gap-6'>
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(processForm)}
               className='flex felx-1 flex-col gap-4 sm:w-1/2'
             >
-                <input className='rounded-1g p-1' name='title' placeholder='Title' required/>
+                <input  className='rounded-1g p-1'
+                        placeholder='Title' 
+                        type='text'
+                        {...register('title', { required: 'title is required'})}
+                />
+                {errors.title?.message && (
+                    <p className='text-sm text-red-400'>{errors.title.message}</p>
+                )}
 
-                <input className='rounded-1g p-1' name='authorName' placeholder='Author Name' required/>
-            
-                <input className='rounded-1g p-1' name='yearOfPublication' placeholder='Year of Publication' required/>
+                <input  className='rounded-1g p-1'
+                        placeholder='Author Name' 
+                        type='text'
+                        {...register('authorname', { required: 'authorName is required'})}
+                />
+                {errors.authorname?.message && (
+                    <p className='text-sm text-red-400'>{errors.authorname.message}</p>
+                )}
 
-                <input className='rounded-1g p-1' name='Volume' placeholder='Volume No.'/>
+                <input  className='rounded-1g p-1'
+                        placeholder='Year Of Publication (dd/mm/yyyy)' 
+                        type='date'
+                        {...register('yearOfPublication', { required: 'Year of Publication is required'})}
+                />
+                {errors.yearOfPublication?.message && (
+                    <p className='text-sm text-red-400'>{errors.yearOfPublication.message}</p>
+                )}
 
-                <input className='rounded-1g p-1' name='number' placeholder='Book Number'/>
+                <input  className='rounded-1g p-1'
+                        placeholder='Volume' 
+                        type='number'
+                        {...register('volume', {})}
+                />
+                {errors.volume?.message && (
+                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
+                )}
 
+                <input  className='rounded-1g p-1'
+                        placeholder='Extra Information' 
+                        type='text'
+                        {...register('extraInformation', {})}
+                />
+                {errors.volume?.message && (
+                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
+                )}
+
+             
+                {/* <input  className='rounded-1g p-1'
+                        type='checkbox' 
+                        placeholder='Recieve email response' 
+                        {...register('reponseBool', {})}
+                />
+
+                <input  className='rounded-1g p-1'
+                        placeholder='Email' 
+                        type='text'
+                        {...register('extraInformation', {})}
+                />
+                {errors.volume?.message && (
+                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
+                )}  */}
 
                 <button className='rounded-1g bg-black py-2 text-white'>Submit</button>
             </form>
