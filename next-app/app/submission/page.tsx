@@ -1,13 +1,15 @@
 import SimpleForm from '../components/submissionform'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
   return (
-    <section className='py-10 px-10'>
-      <div className='container'>
-        <h1 className='text-2xl'>Article Submission Form</h1>
-        <br></br>
-        <SimpleForm />
+    <section>
+      <Navbar />
+
+      <div className='top-24 p-10'>
+      <SimpleForm />
       </div>
+
     </section>
   )
 }

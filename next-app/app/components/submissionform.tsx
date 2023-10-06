@@ -28,7 +28,7 @@ export default function submissionform() {
    const processForm: SubmitHandler<Inputs> = data => setData(data)
 
     return (
-        <section className='flex gap-6'>
+        <section className='flex gap-6 p-10 w-screen'>
             <form
               onSubmit={handleSubmit(processForm)}
               className='flex felx-1 flex-col gap-4 sm:w-1/2'
