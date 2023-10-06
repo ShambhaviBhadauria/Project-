@@ -41,7 +41,7 @@ const banner = () => {
 
         <div className={
           menuOpen
-          ? "fixed left-0 top-25 w-[20%] h-screen bg-slate-100 p-10 ease-in duration-400"
+          ? "fixed left-0 top-25 w-[20%] h-screen bg-red-50 p-10 ease-in duration-400"
           : "fixed left-[-100%] top-25 h-screen p-10 ease-in duration-500"
         }>
 
@@ -51,7 +51,7 @@ const banner = () => {
             <Link href="/">
               <li
                 onClick={() => setMenuOpen(false)}
-                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-slate-100 hover:bg-slate-200'
+                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-red-50 hover:bg-red-200'
               >
                 Search Articles
               </li>
@@ -60,7 +60,7 @@ const banner = () => {
             <Link href="/submission">
               <li
                 onClick={() => setMenuOpen(false)}
-                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-slate-100 hover:bg-slate-200'
+                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-red-50 hover:bg-red-200'
               >
                 Submit Article
               </li>
@@ -69,7 +69,7 @@ const banner = () => {
             <Link href="/moderation">
               <li
                 onClick={() => setMenuOpen(false)}
-                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-slate-100 hover:bg-slate-200'
+                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-red-50 hover:bg-red-200'
               >
                 Moderation
               </li>
@@ -78,7 +78,7 @@ const banner = () => {
             <Link href="/analysis">
               <li
                 onClick={() => setMenuOpen(false)}
-                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-slate-100 hover:bg-slate-200'
+                className='py-4 cursor-pointer border-y-2 border-gray-500 pl-8 rounded-md bg-red-50 hover:bg-red-200'
               >
                 Analysis
               </li>
