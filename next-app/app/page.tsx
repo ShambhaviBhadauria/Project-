@@ -1,7 +1,7 @@
 import SimpleForm from './components/submissionform'
 import Navbar from './components/Navbar'
 
-export default function Home() {
+export default function SearchPage() {
   return (
     <section className=''>
       <div className='container'>
