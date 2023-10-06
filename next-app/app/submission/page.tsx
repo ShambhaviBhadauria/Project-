@@ -6,7 +6,12 @@ export default function Home() {
     <section>
       <Navbar />
 
-      <div className='top-24 p-10'>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <div className='p-10 '>
       <SimpleForm />
       </div>
 
