@@ -28,7 +28,7 @@ export default function submissionform() {
    const processForm: SubmitHandler<Inputs> = data => setData(data)
 
     return (
-        <section className='flex gap-6'>
+        <section className='flex gap-6 p-10'>
             <form
               onSubmit={handleSubmit(processForm)}
               className='flex felx-1 flex-col gap-4 sm:w-1/2'
@@ -97,7 +97,7 @@ export default function submissionform() {
                 <button className='rounded-1g bg-black py-2 text-white'>Submit</button>
             </form>
 
-            <div className='flex-1 rounded-1g bg-cyan-600 p-8 text-white'>
+            <div className='flex-auto rounded-1g bg-cyan-600 p-8 text-white'>
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             </div> 
         </section>
