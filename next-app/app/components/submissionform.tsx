@@ -24,12 +24,6 @@ export default function submissionform() {
     formState: { errors }
    } = useForm<Inputs>({   })
 
-   let responseBool = false;
-   const toggleResponse = () => {
-    responseBool = !responseBool;
-    console.log(responseBool)
-    } 
-
    const processForm: SubmitHandler<Inputs> = data => setData(data)
 
     return (
