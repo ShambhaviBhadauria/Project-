@@ -1,16 +1,25 @@
-const express = require ("express");
-const mongoose = require ("mongoose");
+const express = require ('express')
+const mongoose = require('mongoose');
+const app = express ();
+mongoose. set('strictQuery', false);
 
-const uri = 'mongodb+srv://ense701:<zddX9q9f8F9mUf9C>@ense701.lu4fcfq.mongodb.net/'
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+const uri = 'mongodb+srv://ense701:<>@ense701.lu4fcfq.mongodb.net/'
+
+const PORT = 3000;
+
 
 async function connect ()
 {
-    try{
-         await.moongose.connect(uri)
-         console.log("Connected to MongoDB")
-    }catch(error){
+    try {
+        await mongoose.connect(uri);
+        console.log("Connected to MongoDB");
+    } catch (error) {
         console.error(error);
     }
+    connect();
 }
 const app = express (8000, () => {
     console.log("Server has been started on Port 8000");
