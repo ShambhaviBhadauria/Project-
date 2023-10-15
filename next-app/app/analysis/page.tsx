@@ -1,5 +1,7 @@
 import React from 'react'
-import Navbar from './components/navbar'
+import Navbar from '../components/Navbar';
+
+
 
 const AnalystPage = () => {
   return (
