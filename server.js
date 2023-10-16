@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://ense701:zddX9q9f8F9mUf9C@ense701.lu4fcfq.mongodb.net/ense701', {
+mongoose.connect('mongodb+srv://shambhavi:zddX9q9f8F9mUf9C@ense701.s1q557s.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
