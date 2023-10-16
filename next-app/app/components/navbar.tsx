@@ -2,7 +2,6 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from '../Images/favicon.png'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from "react"
 
@@ -26,15 +25,7 @@ const banner = () => {
           </div>
 
           <div>
-            <Link href="/">
-              <Image
-                src={Logo}
-                alt="logo"
-                width="75"
-                height="75"
-                className='cursor-pointer'
-                priority/>
-            </Link>
+          
           </div>
         </div>
 
