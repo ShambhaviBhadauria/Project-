@@ -3,9 +3,9 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { useState } from "react"
+import { useState } from "react";
 
-const banner = () => {
+const Banner = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleNav = () => {
@@ -84,4 +84,4 @@ const banner = () => {
   )
 }
 
-export default banner
+export default Banner
