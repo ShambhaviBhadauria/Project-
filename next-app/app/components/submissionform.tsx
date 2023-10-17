@@ -1,124 +1,135 @@
-// https://youtu.be/R_Pj593TH_Q
+'use client';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-'use client'
-
-import { useState } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
-
-type Inputs = {
-    title: string
-    authorname: string
-    yearOfPublication: string
-    volume: number
-    extraInformation: string,
-    reponseBool: boolean,
-    responseEmail: string
-};
-
-const SubmissionForm: React.FC = () => {
+const SubmissionForm = () => {
     const {
         register,
         handleSubmit,
-        formState : {errors}
-    }= useForm<Inputs>();
+        formState: { errors },
+    } = useForm();
 
-    const [data,setData] = useState<any>(null);
+    const [title, setTitle] = useState('');
+    const [authorname, setAuthorname] = useState('');
+    const [yearOfPublication, setYearOfPublication] = useState('');
+    const [volume, setVolume] = useState('');
+    const [extraInformation, setExtraInformation] = useState('');
+    const [responseEmail, setResponseEmail] = useState('');
+    const [error, setError] = useState(null);
 
-    const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        console.log("Title: ", title);
+        console.log("Author Name: ", authorname);
+        console.log("Year Of Publication: ", yearOfPublication);
+        console.log("Volume: ", volume);
+        console.log("Extra Information: ", extraInformation);
+        console.log("Email: ", responseEmail);
+
         try {
-            const response = await fetch('/api/form-data', {
+            const res = await fetch('/api/form', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-type': 'application/json',
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    title,
+                    authorname,
+                    yearOfPublication,
+                    volume,
+                    extraInformation,
+                    responseEmail,
+                }),
             });
 
-            if (response.ok) {
-                const responseData = await response.json();
-                setData(responseData);
-            } else {
-                console.error('Error', response.statusText);
-            }
+            const { msg } = await res.json();
+            setError(msg);
+            console.log("Server Response: ", msg);
         } catch (error) {
-            console.error('Error', error);
+            console.error('Error submitting the form:', error);
         }
     };
 
     return (
         <section className='flex gap-6 p-10'>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className='flex felx-1 flex-col gap-4 sm:w-1/2'
-            >
-                <input  className='rounded-1g p-1'
-                        placeholder='Title' 
-                        type='text'
-                        {...register('title', { required: 'title is required'})}
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-1 flex-col gap-4 sm:w-1/2'>
+                <input
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
+                    className='rounded-lg p-2'
+                    placeholder='Title'
+                    type='text'
+                    {...register('title', { required: 'Title is required' })}
                 />
                 {errors.title?.message && (
                     <p className='text-sm text-red-400'>{errors.title.message}</p>
                 )}
 
-                <input  className='rounded-1g p-1'
-                        placeholder='Author Name' 
-                        type='text'
-                        {...register('authorname', { required: 'authorName is required'})}
+                <input
+                    onChange={(e) => setAuthorname(e.target.value)}
+                    value={authorname}
+                    className='rounded-lg p-2'
+                    placeholder='Author Name'
+                    type='text'
+                    {...register('authorname', { required: 'Author name is required' })}
                 />
                 {errors.authorname?.message && (
                     <p className='text-sm text-red-400'>{errors.authorname.message}</p>
                 )}
 
-                <input  className='rounded-1g p-1'
-                        placeholder='Year Of Publication (dd/mm/yyyy)' 
-                        type='date'
-                        {...register('yearOfPublication', { required: 'Year of Publication is required'})}
+                <input
+                    onChange={(e) => setYearOfPublication(e.target.value)}
+                    value={yearOfPublication}
+                    className='rounded-lg p-2'
+                    placeholder='Year Of Publication (dd/mm/yyyy)'
+                    type='date'
+                    {...register('yearOfPublication', { required: 'Year of Publication is required' })}
                 />
                 {errors.yearOfPublication?.message && (
                     <p className='text-sm text-red-400'>{errors.yearOfPublication.message}</p>
                 )}
 
-                <input  className='rounded-1g p-1'
-                        placeholder='Volume' 
-                        type='number'
-                        {...register('volume', {})}
+                <input
+                    onChange={(e) => setVolume(e.target.value)}
+                    value={volume}
+                    className='rounded-lg p-2'
+                    placeholder='Volume'
+                    type='number'
+                    {...register('volume', { required: 'Volume is required' })}
                 />
                 {errors.volume?.message && (
                     <p className='text-sm text-red-400'>{errors.volume.message}</p>
                 )}
 
-                <input  className='rounded-1g p-1'
-                        placeholder='Extra Information' 
-                        type='text'
-                        {...register('extraInformation', {})}
+                <input
+                    onChange={(e) => setExtraInformation(e.target.value)}
+                    value={extraInformation}
+                    className='rounded-lg p-2'
+                    placeholder='Extra Information'
+                    type='text'
+                    {...register('extraInformation')}
                 />
-                {errors.volume?.message && (
-                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
+
+                <input
+                    onChange={(e) => setResponseEmail(e.target.value)}
+                    value={responseEmail}
+                    className='rounded-lg p-2'
+                    placeholder='Email'
+                    type='email'
+                    {...register('responseEmail', { required: 'Email is required' })}
+                />
+                {errors.responseEmail?.message && (
+                    <p className='text-sm text-red-400'>{errors.responseEmail.message}</p>
                 )}
 
-             
-                {/* <input  className='rounded-1g p-1'
-                        type='checkbox' 
-                        placeholder='Recieve email response' 
-                        {...register('reponseBool', {})}
-                />
-
-                <input  className='rounded-1g p-1'
-                        placeholder='Email' 
-                        type='text'
-                        {...register('extraInformation', {})}
-                />
-                {errors.volume?.message && (
-                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
-                )}  */}
-
-                <button className='rounded-1g bg-black py-2 text-white'>Submit</button>
+                <button className='rounded-lg bg-black py-2 text-white' type='submit'>
+                    Submit
+                </button>
             </form>
 
-            <div className='flex-auto rounded-1g bg-cyan-600 p-8 text-white'>
-                <pre>{JSON.stringify(data, null, 2)}</pre>
-            </div> 
+            <div className='flex-auto rounded-lg bg-cyan-600 p-8 text-white'>{error}</div>
         </section>
-    )
-}
+    );
+};
+
 export default SubmissionForm;
