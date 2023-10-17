@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import submissionModel from "@app/models/submission"; 
-import connectDB from "@app/lib/mongodb";
+import { NextResponse } from 'next';
+import submissionModel from "@/app/models/sub"; 
+import connectDB from "@/app/lib/mongodb";
 import mongoose from "mongoose";
 
 export async function POST(req) {
