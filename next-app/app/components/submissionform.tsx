@@ -121,3 +121,4 @@ const SubmissionForm: React.FC = () => {
         </section>
     )
 }
+export default SubmissionForm;
