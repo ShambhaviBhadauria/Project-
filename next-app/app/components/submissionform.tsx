@@ -24,7 +24,26 @@ export default function submissionform() {
     formState: { errors }
    } = useForm<Inputs>({   })
 
-   const processForm: SubmitHandler<Inputs> = data => setData(data)
+   const processForm: SubmitHandler<Inputs> = async data => {
+
+   
+
+    const returnedData = await fetch('../api/submission', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+
+    if(!returnedData){
+        console.log('An Error Occured')
+        return
+    }
+
+    console.log(data)
+    setData(returnedData)
+
+   }
+
+
 
     return (
         <section className='flex gap-6 p-10'>
