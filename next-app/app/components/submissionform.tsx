@@ -15,35 +15,40 @@ type Inputs = {
     responseEmail: string
 };
 
-const submissionform: React.FC = () => 
-{
+const SubmissionForm: React.FC = () => {
     const {
         register,
-        SubmitHandler,
-        formState: {errors}
+        handleSubmit,
+        formState : {errors}
+    }= useForm<Inputs>();
 
-    } =  useForm:
+    const [data,setData] = useState<any>(null);
 
+    const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+        try {
+            const response = await fetch('/api/form-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-    }
-}
-
-export default function submissionform() {
-    const [data, setData] = useState<Inputs>()
-
-   const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors }
-   } = useForm<Inputs>({   })
-
-   const processForm: SubmitHandler<Inputs> = data => setData(data)
+            if (response.ok) {
+                const responseData = await response.json();
+                setData(responseData);
+            } else {
+                console.error('Error', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error', error);
+        }
+    };
 
     return (
         <section className='flex gap-6 p-10'>
             <form
-              onSubmit={handleSubmit(processForm)}
+              onSubmit={handleSubmit(onSubmit)}
               className='flex felx-1 flex-col gap-4 sm:w-1/2'
             >
                 <input  className='rounded-1g p-1'
