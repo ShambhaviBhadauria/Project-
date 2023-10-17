@@ -13,6 +13,19 @@ type Inputs = {
     extraInformation: string,
     reponseBool: boolean,
     responseEmail: string
+};
+
+const submissionform: React.FC = () => 
+{
+    const {
+        register,
+        SubmitHandler,
+        formState: {errors}
+
+    } =  useForm:
+
+
+    }
 }
 
 export default function submissionform() {
