@@ -2,23 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-
-mongoose.connect('mongodb+srv://ense701:zddX9q9f8F9mUf9C@ense701.lu4fcfq.mongodb.net/backend', {
+app.use(express.json());
+mongoose.connect('', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-const ArticleSchema = new mongoose.Schema({
-  title: String,
-  authorname: String,
-  yearOfPublication: String,
-  volume: Number,
-  extraInformation: String,
-  responseBool: Boolean,
-  responseEmail: String
-});
-
-const ArticleModel = mongoose.model('articles', ArticleSchema);
 
 const ArticleSchema = new mongoose.Schema({
   title :{
@@ -41,16 +30,14 @@ responseBool :{
 },
 responseEmail :{
   type: string
-},
+}
+});
 
 
+const ArticleModel = mongoose.model('articles', ArticleSchema);
 
 
-})
-
-const collection = new mongoose.model('Articles', ArticleSchema) // creates a collection which uses the article schema 
-
-app.get('/getArticles', (req, res) => {
+app.get('/getArticles', (req, res) => {  // get the articles 
   ArticleModel.find({})
     .then(function (articles) {
       res.json(articles);
@@ -61,7 +48,23 @@ app.get('/getArticles', (req, res) => {
     });
 });
 
+
+app.post('postArticles', (req, res) => {
+  const newArticles = new ArticleModel(req.body); /// creates new articles 
+  newArticles.save()
+  .then(function (article){
+    res.json(article);
+  })
+  .catch(function (err){ // if there is an error a message is send
+    console.log(err);
+    res.status(500).send('Article unable to be posted due to error');
+
+  });
+});
+
 app.listen(3001, () => {
   console.log('Server is running on port 3001!');
 });
+
+
 
