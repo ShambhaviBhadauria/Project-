@@ -11,7 +11,6 @@ type Inputs = {
     yearOfPublication: string
     volume: number
     extraInformation: string,
-    reponseBool: boolean,
     responseEmail: string
 }
 
@@ -25,7 +24,26 @@ export default function submissionform() {
     formState: { errors }
    } = useForm<Inputs>({   })
 
-   const processForm: SubmitHandler<Inputs> = data => setData(data)
+   const processForm: SubmitHandler<Inputs> = async data => {
+
+   
+
+    const returnedData = await fetch('../api/submission', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+
+    if(!returnedData){
+        console.log('An Error Occured')
+        return
+    }
+
+    console.log(data)
+    setData(returnedData)
+
+   }
+
+
 
     return (
         <section className='flex gap-6 p-10'>
@@ -36,7 +54,7 @@ export default function submissionform() {
                 <input  className='rounded-1g p-1'
                         placeholder='Title' 
                         type='text'
-                        {...register('title', { required: 'title is required'})}
+                        {...register('title', { required: 'Title is required'})}
                 />
                 {errors.title?.message && (
                     <p className='text-sm text-red-400'>{errors.title.message}</p>
@@ -45,7 +63,7 @@ export default function submissionform() {
                 <input  className='rounded-1g p-1'
                         placeholder='Author Name' 
                         type='text'
-                        {...register('authorname', { required: 'authorName is required'})}
+                        {...register('authorname', { required: 'Author\'s Name is required'})}
                 />
                 {errors.authorname?.message && (
                     <p className='text-sm text-red-400'>{errors.authorname.message}</p>
@@ -79,20 +97,16 @@ export default function submissionform() {
                 )}
 
              
-                {/* <input  className='rounded-1g p-1'
-                        type='checkbox' 
-                        placeholder='Recieve email response' 
-                        {...register('reponseBool', {})}
-                />
+                <label className='w-full text-center m-3'>Enter your email to recieve a response on your submission</label>
+                
 
+                
                 <input  className='rounded-1g p-1'
-                        placeholder='Email' 
-                        type='text'
-                        {...register('extraInformation', {})}
+                    placeholder='Email' 
+                    type='text'
+                    {...register('responseEmail', {})}
                 />
-                {errors.volume?.message && (
-                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
-                )}  */}
+                
 
                 <button className='rounded-1g bg-black py-2 text-white'>Submit</button>
             </form>

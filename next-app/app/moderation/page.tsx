@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/navbar'
+import ModerationList from '../components/moderationList'
 
 const ModerationPage = () => {
   return (
@@ -15,8 +16,8 @@ const ModerationPage = () => {
       </div>
 
       <div className='flex w-screen h-screen bg-red-100'>
-          <div className='flex m-auto h-3/5 w-3/4 rounded-md border-2 mt-5 p-10 border-black' >
-            <p>Moderation stuff Goes here</p>
+          <div className='flex m-auto h-auto w-3/4 rounded-md border-2 mt-5 p-10 border-black' >
+            <ModerationList/>
           </div>
         </div>
     </div>
