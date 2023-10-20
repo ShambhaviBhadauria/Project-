@@ -1,107 +1,119 @@
-'use client';
-import React,{ReactNode} from 'react';
-import { useForm } from 'react-hook-form';
+// https://youtu.be/R_Pj593TH_Q
 
-const SubmissionForm = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        setError,
-    } = useForm();
+'use client'
 
-    const onSubmit = async (data) => {
-        try {
-            const res = await fetch('/api/form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+import { useState } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
 
-            if (res.ok) {
-          
-                setError('title', { message: '' });
-                setError('authorname', { message: '' });
-                setError('yearOfPublication', { message: '' });
-                setError('volume', { message: '' });
-                setError('extraInformation', { message: '' });
-                setError('responseEmail', { message: '' });
-          
-            } else {
-                const { msg } = await res.json();
-      
-                setError('title', { message: msg.title || 'Unknown error occurred' });
-                setError('authorname', { message: msg.authorname || 'Unknown error occurred' });
-                setError('yearOfPublication', { message: msg.yearOfPublication || 'Unknown error occurred' });
-                setError('volume', { message: msg.volume || 'Unknown error occurred' });
-                setError('extraInformation', { message: msg.extraInformation || 'Unknown error occurred' });
-                setError('responseEmail', { message: msg.responseEmail || 'Unknown error occurred' });
-            }
-        } catch (error) {
-            console.error('Error submitting the form:', error);
-        }
-    };
+type Inputs = {
+    title: string
+    authorname: string
+    yearOfPublication: string
+    volume: number
+    extraInformation: string,
+    responseEmail: string
+}
+
+export default function submissionform() {
+    const [data, setData] = useState<Inputs>()
+
+   const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+   } = useForm<Inputs>({   })
+
+   const processForm: SubmitHandler<Inputs> = async data => {
+
+   
+
+    const returnedData = await fetch('../api/submission', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+
+    if(!returnedData){
+        console.log('An Error Occured')
+        return
+    }
+
+    console.log(data)
+    setData(returnedData)
+
+   }
+
+
 
     return (
         <section className='flex gap-6 p-10'>
-            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-1 flex-col gap-4 sm:w-1/2'>
-                <input
-                    {...register('title', { required: 'Title is required' })}
-                    className='rounded-lg p-2'
-                    placeholder='Title'
+            <form
+              onSubmit={handleSubmit(processForm)}
+              className='flex felx-1 flex-col gap-4 sm:w-1/2'
+            >
+                <input  className='rounded-1g p-1'
+                        placeholder='Title' 
+                        type='text'
+                        {...register('title', { required: 'Title is required'})}
                 />
-                {errors.title && <p className='text-sm text-red-400'>{errors.title.message}</p>}
+                {errors.title?.message && (
+                    <p className='text-sm text-red-400'>{errors.title.message}</p>
+                )}
 
-                <input
-                    {...register('authorname', { required: 'Author name is required' })}
-                    className='rounded-lg p-2'
-                    placeholder='Author Name'
+                <input  className='rounded-1g p-1'
+                        placeholder='Author Name' 
+                        type='text'
+                        {...register('authorname', { required: 'Author\'s Name is required'})}
                 />
-                {errors.authorname && <p className='text-sm text-red-400'>{errors.authorname.message}</p>}
+                {errors.authorname?.message && (
+                    <p className='text-sm text-red-400'>{errors.authorname.message}</p>
+                )}
 
-                <input
-                    {...register('yearOfPublication', { required: 'Year of Publication is required' })}
-                    className='rounded-lg p-2'
-                    placeholder='Year Of Publication (dd/mm/yyyy)'
-                    type='date'
+                <input  className='rounded-1g p-1'
+                        placeholder='Year Of Publication (dd/mm/yyyy)' 
+                        type='date'
+                        {...register('yearOfPublication', { required: 'Year of Publication is required'})}
                 />
-                {errors.yearOfPublication && (
+                {errors.yearOfPublication?.message && (
                     <p className='text-sm text-red-400'>{errors.yearOfPublication.message}</p>
                 )}
 
-                <input
-                    {...register('volume', { required: 'Volume is required' })}
-                    className='rounded-lg p-2'
-                    placeholder='Volume'
-                    type='number'
+                <input  className='rounded-1g p-1'
+                        placeholder='Volume' 
+                        type='number'
+                        {...register('volume', {})}
                 />
-                {errors.volume && <p className='text-sm text-red-400'>{errors.volume.message}</p>}
-
-                <input
-                    {...register('extraInformation')}
-                    className='rounded-lg p-2'
-                    placeholder='Extra Information'
-                    type='text'
-                />
-
-                <input
-                    {...register('responseEmail', { required: 'Email is required' })}
-                    className='rounded-lg p-2'
-                    placeholder='Email'
-                    type='email'
-                />
-                {errors.responseEmail && (
-                    <p className='text-sm text-red-400'>{errors.responseEmail.message}</p>
+                {errors.volume?.message && (
+                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
                 )}
 
-                <button className='rounded-lg bg-black py-2 text-white' type='submit'>
-                    Submit
-                </button>
-            </form>
-        </section>
-    );
-};
+                <input  className='rounded-1g p-1'
+                        placeholder='Extra Information' 
+                        type='text'
+                        {...register('extraInformation', {})}
+                />
+                {errors.volume?.message && (
+                    <p className='text-sm text-red-400'>{errors.volume.message}</p>
+                )}
 
-export default SubmissionForm;
+             
+                <label className='w-full text-center m-3'>Enter your email to recieve a response on your submission</label>
+                
+
+                
+                <input  className='rounded-1g p-1'
+                    placeholder='Email' 
+                    type='text'
+                    {...register('responseEmail', {})}
+                />
+                
+
+                <button className='rounded-1g bg-black py-2 text-white'>Submit</button>
+            </form>
+
+            <div className='flex-auto rounded-1g bg-cyan-600 p-8 text-white'>
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+            </div> 
+        </section>
+    )
+}

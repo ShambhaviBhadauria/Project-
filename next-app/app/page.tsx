@@ -20,18 +20,11 @@ export default function SearchPage() {
 
         
         <div className='flex top-96 p-10 w-screen bg-red-100'>
-            <select className='flex text-center h-full w-full mr-20 ml-60'>
+            <select className='flex text-center h-full w-full mx-96'>
                 <option value='1'>Test Driven Development</option>
                 <option value='2'>Scrum Methodology</option>
                 <option value='3'>Third Methodology</option>
                 <option value='4'>Fourth Methodology</option>
-              </select>
-              <select className='flex text-center h-full w-full ml-20 mr-60'>
-                <option value='1'>Strongly Against</option>
-                <option value='2'>Slightly Against</option>
-                <option value='3'>Neutral Stance</option>
-                <option value='4'>Slightly For</option>
-                <option value='5'>Strongly For</option>
               </select>
         </div>
 
