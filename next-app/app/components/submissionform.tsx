@@ -2,9 +2,9 @@
 
 'use client'
 
-import React, { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { PrismaClient } from '@prisma/client';
+import { useState } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
+
 type Inputs = {
     title: string
     authorname: string
@@ -14,49 +14,35 @@ type Inputs = {
     responseEmail: string
 }
 
-const prisma = new PrismaClient();
+export default function submissionform() {
+    const [data, setData] = useState<Inputs>()
 
-export default function SubmissionForm() {
-    const [data, setData] = useState<Inputs>();
+   const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+   } = useForm<Inputs>({   })
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<Inputs>();
+   const processForm: SubmitHandler<Inputs> = async data => {
 
-    const processForm: SubmitHandler<Inputs> = async (formData) => {
-        try {
-            const insertedSubmission = await prisma.form.create({
-                data: {
-                    title: formData.title,
-                    authorname: formData.authorname,
-                    yearOfPublication: formData.yearOfPublication,
-                    volume: formData.volume,
-                    extraInformation: formData.extraInformation,
-                    responseEmail: formData.responseEmail,
-                },
-            });
+   
 
-            console.log('Submission Done!:', insertedSubmission);
+    const returnedData = await fetch('../api/submission', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(res => res.json())
 
-            const returnedData = await fetch('../api/submission', {
-                method: 'POST',
-                body: JSON.stringify(formData),
-            }).then((res) => res.json());
+    if(!returnedData){
+        console.log('An Error Occured')
+        return
+    }
 
-            if (!returnedData) {
-                console.log('Error');
-                return;
-            }
+    console.log(data)
+    setData(returnedData)
 
-            console.log(returnedData);
-            setData(returnedData);
-        } catch (error) {
-            console.error('Error', error);
-          
-        }
-    };
+   }
+
 
 
     return (
