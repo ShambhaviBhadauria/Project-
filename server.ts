@@ -13,9 +13,6 @@ async function main() {
                 responseEmail: "Jeff@rediffmail.com"
             }
         });
-        console.log("Form created successfully:", form);
-    } catch (error) {
-        console.error("Error creating form:", error);
     } finally {
         await prisma.$disconnect();
     }
