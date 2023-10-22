@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Accepted {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model Agile {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+}
+
+model All {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+}
+
+model DevOps {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+
+  @@map("DevOps Deployment Methodology")
+}
+
+model Form {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  responseEmail     String
+  title             String
+  volume            BigInt
+  yearOfPublication String
+}
+
+model Scrum_Methodology {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+
+  @@map("Scrum Methodology")
+}
+
+model Test_Driven_Development {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+
+  @@map("Test Driven Development")
+}

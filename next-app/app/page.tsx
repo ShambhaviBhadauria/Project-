@@ -1,6 +1,8 @@
+'use client'
 import SimpleForm from './components/submissionform'
 import Navbar from './components/navbar'
-
+import display from './components/display';
+import { Component } from 'react'
 export default function SearchPage() {
   return (
     <section className=''>
@@ -21,10 +23,11 @@ export default function SearchPage() {
         
         <div className='flex top-96 p-10 w-screen bg-red-100'>
             <select className='flex text-center h-full w-full mx-96'>
-                <option value='1'>Test Driven Development</option>
+                <option value='1'>Test Driven Development</option>      /// dropdown with mythology
                 <option value='2'>Scrum Methodology</option>
-                <option value='3'>Third Methodology</option>
-                <option value='4'>Fourth Methodology</option>
+                <option value='3'>Agile Methodology</option>
+                <option value='4'> DevOps Deployment Methology</option>
+                <option value='5'> All Methologies</option>
               </select>
         </div>
 
