@@ -1,11 +1,11 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
+  output   = "./generated/client"    /// generating 
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL")   /// url in the env 
 }
 
 model Accepted {
@@ -15,7 +15,7 @@ model Accepted {
 model Agile {
   id                String @id @default(auto()) @map("_id") @db.ObjectId
   authorname        String
-  extraInformation  String
+  extraInformation  String     /// collection agile methology
   title             String
   volume            Int
   yearOfPublication String
@@ -24,7 +24,7 @@ model Agile {
 model All {
   id                String @id @default(auto()) @map("_id") @db.ObjectId
   authorname        String
-  extraInformation  String
+  extraInformation  String         /// collection of all mythology
   title             String
   volume            Int
   yearOfPublication String
@@ -33,7 +33,7 @@ model All {
 model DevOps_Deployment_Methodology {
   id                String @id @default(auto()) @map("_id") @db.ObjectId
   authorname        String
-  extraInformation  String
+  extraInformation  String      //// DevOps mythology
   title             String
   volume            Int
   yearOfPublication String
@@ -46,7 +46,7 @@ model Form {
   authorname        String
   extraInformation  String
   responseEmail     String
-  title             String
+  title             String    // form submission mythology
   volume            BigInt
   yearOfPublication String
 }
@@ -56,7 +56,7 @@ model Scrum_Methodology {
   authorname        String
   extraInformation  String
   title             String
-  volume            Int
+  volume            Int           /// scrym methology
   yearOfPublication String
 
   @@map("Scrum Methodology")
@@ -67,8 +67,11 @@ model Test_Driven_Development {
   authorname        String
   extraInformation  String
   title             String
-  volume            Int
+  volume            Int                             ///TDD Mythology
   yearOfPublication String
 
   @@map("Test Driven Development")
 }
+
+
+///https://www.prisma.io/docs/getting-started/quickstart
