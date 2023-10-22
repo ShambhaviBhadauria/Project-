@@ -10,7 +10,7 @@ type Inputs = {
     authorname: string
     yearOfPublication: string
     volume: number
-    extraInformation: string,
+    extraInformation: string,     /// imput data  clarification
     responseEmail: string
 }
 
@@ -18,7 +18,7 @@ export default function submissionform() {
     const [data, setData] = useState<Inputs>()
 
    const {
-    register,
+    register,                                  
     handleSubmit,
     watch,
     formState: { errors }
@@ -28,7 +28,7 @@ export default function submissionform() {
 
    
 
-    const returnedData = await fetch('../api/submission', {
+    const returnedData = await fetch('../api/submission', {    
       method: 'POST',
       body: JSON.stringify(data)
     }).then(res => res.json())
