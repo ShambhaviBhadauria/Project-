@@ -23,7 +23,7 @@ export default function SearchPage() {
         
         <div className='flex top-96 p-10 w-screen bg-red-100'>
             <select className='flex text-center h-full w-full mx-96'>
-                <option value='1'>Test Driven Development</option>
+                <option value='1'>Test Driven Development</option>      /// dropdown with mythology
                 <option value='2'>Scrum Methodology</option>
                 <option value='3'>Agile Methodology</option>
                 <option value='4'> DevOps Deployment Methology</option>
