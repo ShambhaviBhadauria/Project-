@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "mongodb"              // connects to mongo db throught ev file which contains the url
+  url      = env("DATABASE_URL")
+}
+
+model Accepted {
+  id String @id @default(auto()) @map("_id") @db.ObjectId   // collection where the accepted articles would go after moderation has been done
+}
+
+model Agile {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId   //
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+}
+
+model All {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+}
+
+model DevOps_Deployment_Methodology {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+
+  @@map("DevOps Deployment Methodology")
+}
+
+model Form {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  responseEmail     String
+  title             String
+  volume            BigInt
+  yearOfPublication String
+}
+
+model Scrum_Methodology {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+
+  @@map("Scrum Methodology")
+}
+
+model Test_Driven_Development {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  authorname        String
+  extraInformation  String
+  title             String
+  volume            Int
+  yearOfPublication String
+
+  @@map("Test Driven Development")
+}

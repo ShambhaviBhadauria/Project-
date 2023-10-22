@@ -24,7 +24,7 @@ export default function submissionform() {
     formState: { errors }
    } = useForm<Inputs>({   })
 
-   const processForm: SubmitHandler<Inputs> = async data => {
+   const processForm: SubmitHandler<Inputs> = async data => {  
 
    
 
