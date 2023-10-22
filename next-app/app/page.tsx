@@ -1,7 +1,8 @@
 'use client'
 import SimpleForm from './components/submissionform'
 import Navbar from './components/navbar'
-
+import display from './components/display';
+import { Component } from 'react'
 export default function SearchPage() {
   return (
     <section className=''>
