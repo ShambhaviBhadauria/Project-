@@ -39,9 +39,12 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    
     "app/api/route.js",
     "app/api/form/route.js",
-    "app/components/moderationList.jsx"
+    "app/components/moderationList.jsx",
+    "/Users/shambhavi/Desktop/KMS/Project-/next-app/app/page.tsx"
+  
   ],
   "exclude": [
     "node_modules"

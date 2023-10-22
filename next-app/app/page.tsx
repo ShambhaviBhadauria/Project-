@@ -1,3 +1,4 @@
+'use client'
 import SimpleForm from './components/submissionform'
 import Navbar from './components/navbar'
 

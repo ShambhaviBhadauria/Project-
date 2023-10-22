@@ -104,11 +104,56 @@ exports.Prisma.AcceptedScalarFieldEnum = {
   id: 'id'
 };
 
+exports.Prisma.AgileScalarFieldEnum = {
+  id: 'id',
+  authorname: 'authorname',
+  extraInformation: 'extraInformation',
+  title: 'title',
+  volume: 'volume',
+  yearOfPublication: 'yearOfPublication'
+};
+
+exports.Prisma.AllScalarFieldEnum = {
+  id: 'id',
+  authorname: 'authorname',
+  extraInformation: 'extraInformation',
+  title: 'title',
+  volume: 'volume',
+  yearOfPublication: 'yearOfPublication'
+};
+
+exports.Prisma.DevOps_Deployment_MethodologyScalarFieldEnum = {
+  id: 'id',
+  authorname: 'authorname',
+  extraInformation: 'extraInformation',
+  title: 'title',
+  volume: 'volume',
+  yearOfPublication: 'yearOfPublication'
+};
+
 exports.Prisma.FormScalarFieldEnum = {
   id: 'id',
   authorname: 'authorname',
   extraInformation: 'extraInformation',
   responseEmail: 'responseEmail',
+  title: 'title',
+  volume: 'volume',
+  yearOfPublication: 'yearOfPublication'
+};
+
+exports.Prisma.Scrum_MethodologyScalarFieldEnum = {
+  id: 'id',
+  authorname: 'authorname',
+  extraInformation: 'extraInformation',
+  title: 'title',
+  volume: 'volume',
+  yearOfPublication: 'yearOfPublication'
+};
+
+exports.Prisma.Test_Driven_DevelopmentScalarFieldEnum = {
+  id: 'id',
+  authorname: 'authorname',
+  extraInformation: 'extraInformation',
   title: 'title',
   volume: 'volume',
   yearOfPublication: 'yearOfPublication'
@@ -127,7 +172,12 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Accepted: 'Accepted',
-  Form: 'Form'
+  Agile: 'Agile',
+  All: 'All',
+  DevOps_Deployment_Methodology: 'DevOps_Deployment_Methodology',
+  Form: 'Form',
+  Scrum_Methodology: 'Scrum_Methodology',
+  Test_Driven_Development: 'Test_Driven_Development'
 };
 
 /**
