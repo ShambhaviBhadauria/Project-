@@ -23,8 +23,9 @@ export default function SearchPage() {
             <select className='flex text-center h-full w-full mx-96'>
                 <option value='1'>Test Driven Development</option>
                 <option value='2'>Scrum Methodology</option>
-                <option value='3'>Third Methodology</option>
-                <option value='4'>Fourth Methodology</option>
+                <option value='3'>Agile Methodology</option>
+                <option value='4'> DevOps Deployment Methology</option>
+                <option value='5'> All Methologies</option>
               </select>
         </div>
 
